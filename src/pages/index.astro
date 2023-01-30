@@ -1,0 +1,103 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Card from '../components/Card.astro';
+
+import rubbers from '/images/rubbers.jpeg';
+import arietta_bg from '/images/arietta-background.jpg';
+
+import { ProductType } from './../data/data';
+---
+
+<Layout title="Welcome to Arietta Online">
+	<main>	
+		<div class="card bg-base-100 image-full my-4">
+			<figure><img src="/images/arietta-background.jpg" alt={arietta_bg} width="100%" /></figure>
+			<div class="card-body">
+			  <h1 class="card-title">Arietta Online Table Tennis Shop</h1>
+			  
+			</div>
+		  </div>
+
+		<ul role="list" class="link-card-grid">
+			
+			<a href={`/products/${ProductType.Rubber}`}>
+			<Card title="Rubbers" imageName={rubbers}>
+
+			</Card>
+			</a>
+			<Card title="Blades">
+
+			</Card>
+			<Card title="Clothes & Shoes">
+
+			</Card>
+			<Card title="Accessories">
+				<div slot="footer">
+					<label for="my-modal" class="btn">open modal</label>
+				</div>
+
+			</Card>
+
+	</ul>
+
+	<input type="checkbox" id="my-modal" class="modal-toggle" />
+    <div class="modal">
+      <div class="modal-box">
+        <h3 class="font-bold text-lg">Congratulations random Internet user!</h3>
+        <p class="py-4">
+          You've been selected for a chance to get one year of subscription to
+          use Wikipedia for free!
+        </p>
+        <div class="modal-action">
+          <label for="my-modal" class="btn">Yay!</label>
+        </div>
+      </div>
+    </div>
+
+	</main>
+</Layout>
+
+<style>
+	main {
+		margin: auto;
+		padding: 0.1rem;
+		max-width: 120ch;
+	}
+	h1 {
+		font-size: 3rem;
+		font-weight: 800;
+		margin: 0;
+	}
+	.text-gradient {
+		background-image: var(--accent-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-size: 400%;
+		background-position: 0%;
+	}
+	.instructions {
+		line-height: 1.6;
+		margin: 1rem 0;
+		border: 1px solid rgba(var(--accent), 25%);
+		background-color: white;
+		padding: 1rem;
+		border-radius: 0.4rem;
+	}
+	.instructions code {
+		font-size: 0.875em;
+		font-weight: bold;
+		background: rgba(var(--accent), 12%);
+		color: rgb(var(--accent));
+		border-radius: 4px;
+		padding: 0.3em 0.45em;
+	}
+	.instructions strong {
+		color: rgb(var(--accent));
+	}
+	.link-card-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
+		gap: 1rem;
+		padding: 0;
+	}
+</style>

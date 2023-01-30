@@ -1,0 +1,86 @@
+---
+import { products as allProducts, Product } from "../../data/data";
+import Layout from "../../layouts/Layout.astro";
+
+export function getStaticPaths() {
+  return allProducts.map((p) => {
+    return {
+      params: { productId: p.id },
+    };
+  });
+}
+
+const { productId } = Astro.params;
+let product: Product | null = null;
+if (productId) {
+  const products = allProducts.filter(
+    (p: Product) => p.id == parseInt(productId)
+  );
+  if (products.length) {
+    product = products[0];
+  }
+}
+---
+
+<Layout title="Arietta Shop">
+  <main>
+    {
+      product && (
+        <div class="hero min-h-screen bg-base-200">
+          <div class="hero-content flex-col">
+            <h2 class="text-5xl font-bold">{product.name}</h2>
+            <div class="flex w-full">
+              <img
+                src={`/images/${product.images[0]}`}
+                class="max-w-sm rounded-lg shadow-2xl"
+              />
+              <div class="pl-4 pb-4">
+                {product.definedVariants &&
+                  product.definedVariants.map((df, index) => {
+                    return (
+                      <div class="form-control w-full grid max-w-xs">
+                        <label class="label">
+                          <span class="label-text">{df}:</span>
+                        </label>
+                        <select class="select select-bordered">
+                          <option disabled selected>
+                            Pick one
+                          </option>
+                          {product?.variants?.map((v) => {
+                            return <option>{v.combination[index]}</option>;
+                          })}
+                        </select>  
+                      </div>
+                    );
+                  })}
+
+                  <div class="form-control w-full grid max-w-xs">
+                        <label class="label">
+                          <span class="label-text">Quantity:</span>
+                        </label>
+
+                <input type="number" value="1" class="input"/>
+                </div>
+
+                <br />
+                <button class="btn btn-primary">Add to Cart</button>
+              </div>
+            </div>
+            <div>
+              <p class="py-6">{product.description}</p>
+            </div>
+          </div>
+        </div>
+      )
+    }
+  </main>
+</Layout>
+
+<style>
+  main {
+    margin: auto;
+    padding: 0.1rem;
+    max-width: 120ch; 
+  }
+  
+</style>
