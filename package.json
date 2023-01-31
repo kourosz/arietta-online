@@ -11,14 +11,19 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/mdx": "^0.15.2",
     "@astrojs/solid-js": "^2.0.1",
     "@astrojs/tailwind": "^3.0.0",
     "astro": "^2.0.2",
     "daisyui": "^2.49.0",
+    "lodash": "^4.17.21",
+    "showdown": "^2.1.0",
     "solid-js": "^1.6.9",
     "tailwindcss": "^3.2.4"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.191",
+    "@types/showdown": "^2.0.0",
     "autoprefixer": "^10.4.13",
     "postcss": "^8.4.21"
   }
