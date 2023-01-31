@@ -27,7 +27,7 @@ export type Product = {
     company: string,
     price: number,
     salePrice?: number,
-    definedVariants?: string[],
+    definedVariants: string[],
     variants?: Variant[],
     description: string
 };
