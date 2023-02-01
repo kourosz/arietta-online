@@ -18,6 +18,16 @@ const products = allProducts.filter((p) => p.productType == ProductType.Rubber);
 
 <Layout title="Arietta Shop">
   <main>
+    <div class="text-sm breadcrumbs">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li>Products</li>
+      </ul>
+    </div>
+    <!-- 
+      // TODO: tranlate the type to string and show below
+    -->
+
     <!-- <div class="overflow-x-auto w-full"> -->
     <table class="table w-full">
       <thead>
@@ -42,7 +52,7 @@ const products = allProducts.filter((p) => p.productType == ProductType.Rubber);
                         />
                       </div>
                     </div>
-                    <a href={"/product-details/" + p.id}>
+                    <a href={`/product-details/${p.id}`}>
                       <div>
                         <div class="font-bold">{p.name}</div>
                       </div>
@@ -53,7 +63,7 @@ const products = allProducts.filter((p) => p.productType == ProductType.Rubber);
                 <th>
                   <a
                     class="btn btn-ghost btn-xs"
-                    href={"/product-details/" + p.id}
+                    href={`/product-details/${p.id}`}
                   >
                     details
                   </a>

@@ -20,7 +20,7 @@ export type Variant = {
     qty: number
 }
 export type Product = {
-    id: number,
+    id: string,
     name: string,
     productType: ProductType,
     images: string[],
@@ -33,13 +33,12 @@ export type Product = {
 };
 export const products = [
     {
-        id: 1, 
+        id: "1", 
         name: "MasterSpin Special", 
         productType: ProductType.Rubber,
         images: ["masterSpinSpecial.jpeg"],
         company: 'Juic', 
-        price: 75,
-        salePrice: 65,
+        price: 45,
         definedVariants: ["Color","Thickness"], 
         variants: [ 
             { combination: ['Red', '1.5'], qty: 1},

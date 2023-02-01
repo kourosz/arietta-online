@@ -6,31 +6,40 @@ import Layout from "../../layouts/Layout.astro";
 export function getStaticPaths() {
   return allProducts.map((p) => {
     return {
-      params: { productId: p.id },
+      params: { id: p.id },
     };
   });
 }
 
-const { productId } = Astro.params;
+const { id } = Astro.params;
 let product: Product | null = null;
-if (productId) {
+if (id) {
   const products = allProducts.filter(
-    (p: Product) => p.id == parseInt(productId)
+    (p: Product) => p.id == id
   );
   if (products.length) {
     product = products[0];
   }
 }
-
 ---
 
 <Layout title="Arietta Shop">
   <main>
+    <div class="text-sm breadcrumbs">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href={`/products/${product?.productType}`}>Products</a></li>
+        <li>{product && product.name}</li>
+      </ul>
+    </div>
+
     {
       product && (
         <div class="hero min-h-screen bg-base-200">
           <div class="hero-content flex-col">
-            <h2 class="text-5xl font-bold">{product.company} - {product.name}</h2>
+            <h2 class="text-5xl font-bold">
+              {product.company} - {product.name}
+            </h2>
             <div class="flex w-full">
               <img
                 src={`/images/${product.images[0]}`}
@@ -47,7 +56,6 @@ if (productId) {
         </div>
       )
     }
-
   </main>
 </Layout>
 
@@ -55,7 +63,6 @@ if (productId) {
   main {
     margin: auto;
     padding: 0.1rem;
-    max-width: 120ch; 
+    max-width: 120ch;
   }
-
 </style>

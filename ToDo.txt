@@ -1,0 +1,9 @@
+// TODO: 
+
+* ~~Add breadcrum if required~~
+* What to do with database? (check Hostinger first)
+* Add Login
+* Add View Cart
+* Add Checkout
+
+* Start making the DVTTA-Scoring
