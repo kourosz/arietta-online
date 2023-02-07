@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
 
 import rubbers from '/images/rubbers.jpeg';
+import blades from '/images/blades.jpg';
 import arietta_bg from '/images/arietta-background.jpg';
 
 import { ProductType } from './../data/data';
@@ -23,11 +24,14 @@ import { ProductType } from './../data/data';
 			<a href={`/products/${ProductType.Rubber}`}>
 			<Card title="Rubbers" imageName={rubbers}>
 
-			</Card>
+				</Card>
 			</a>
-			<Card title="Blades">
+			<a href={`/products/${ProductType.Blade}`}>
+
+			<Card title="Blades" imageName={blades}>
 
 			</Card>
+			</a>
 			<Card title="Clothes & Shoes">
 
 			</Card>
