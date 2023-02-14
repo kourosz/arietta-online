@@ -8,28 +8,18 @@ export function getStaticPaths() {
   ];
 }
 
-import { ProductType, products as allProducts, Product } from "../../data/data";
+import { ProductType, Product } from "../../entities";
 import Layout from "../../layouts/Layout.astro";
-
-import {Client} from "pg";
+const response = await fetch(import.meta.env.HOST_URL+"/data/products.json");
+const allProducts = await response.json() as Product[];
+// import {Client} from "pg";
 
 const { type } = Astro.params;
 
-const products = allProducts.filter((p) => p.productType == ProductType.Rubber);
-
-const client = new Client(import.meta.env.DATABASE_URL);
-
-  // await client.connect();
-  // try {
-  //   const results = await client.query("SELECT NOW()");
-  //   console.log(results);
-  // } catch (err) {
-  //   console.error("error executing query:", err);
-  // } finally {
-  //   client.end();
-  // }
+const products = allProducts.filter((p) => p.productType == type);
 
 ---
+
 
 <Layout title="Arietta Shop">
   <main>

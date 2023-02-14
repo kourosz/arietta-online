@@ -1,0 +1,17 @@
+[
+    {
+        "id": "1", 
+        "name": "MasterSpin Special", 
+        "productType": "Rubber",
+        "images": ["juic-master-spin-special.jpeg"],
+        "company": "Juic", 
+        "price": 45,
+        "definedVariants": ["Color","Thickness"], 
+        "variants": [ 
+            { "no": 1, "combination": ["Red", "1.5"] }
+        ],
+        "description": "Medium pimpled rubber with strenghten pimple-base for increased durability in offense play. Rather thin, relatively much spaced out pimples for increased disturbing effect."    
+    }
+]
+
+

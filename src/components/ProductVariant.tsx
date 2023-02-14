@@ -1,4 +1,4 @@
-import type { Product } from "../data/data";
+import type { Product } from "../entities";
 import { createSignal, For } from "solid-js";
 import { createStore } from "solid-js/store";
 
@@ -29,8 +29,8 @@ export default function ProductVariant(props: Props) {
       }
       return true;
     });
-
-    return (found && found.qty) || 0;
+// TODO: Must be taken from the inventory
+    return (found && 1) || 0;
   };
   const buttonDisabled = () => {
     return (

@@ -10,7 +10,7 @@ create TYPE ProductType as ENUM (
     'Rubber', 'Blade', 'Clothes','Shoes', 'Glues'
 );
 
-DROP TYPE Companies;
+DROP TYPE Company;
 create TYPE Companies as ENUM (
     'GEWO', 'JUIC', 'DHS','YASAKA', '729', 'STIGA', 'Arbalest', 'Hallmark'
 );
@@ -21,12 +21,12 @@ CREATE TYPE Attribute as ENUM (
 );
 
 DROP TABLE Product;
-create table if not exists Product (
+create table (
     id UUID Primary Key default gen_random_uuid(),
     name varchar(100) NOT NULL,
     productType ProductType NOT NULL,
     images JSONB,
-    company Companies NOT NULL,
+    company Company NOT NULL,
     description VARCHAR(1024),
     extra JSONB null,
     UNIQUE(name)
@@ -102,7 +102,6 @@ CREATE TABLE Transaction (
     unique (serialNo)
 );
 
-drop table TransactionItems;
 CREATE table TransactionItems (
     transactionId int References Transaction(id),
     productVariantId UUID not null References ProductVariant(id),

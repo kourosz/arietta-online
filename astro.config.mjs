@@ -10,6 +10,11 @@ import solidJs from "@astrojs/solid-js";
 import mdx from "@astrojs/mdx";
 
 // https://astro.build/config
+import netlify from "@astrojs/netlify/functions";
+
+// https://astro.build/config
 export default defineConfig({
-  integrations: [tailwind(), solidJs(), mdx()]
+  integrations: [tailwind(), solidJs(), mdx()],
+  output: "server",
+  adapter: netlify()
 });

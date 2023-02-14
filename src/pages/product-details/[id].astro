@@ -1,19 +1,22 @@
 ---
 import ProductVariant from "../../components/ProductVariant";
-import { products as allProducts, Product } from "../../data/data";
+import type { Product } from "../../entities";
 import Layout from "../../layouts/Layout.astro";
 
-export function getStaticPaths() {
-  return allProducts.map((p) => {
-    return {
-      params: { id: p.id },
-    };
-  });
-}
+// export function getStaticPaths() {
+//   return allProducts.map((p) => {
+//     return {
+//       params: { id: p.id },
+//     };
+//   });
+// }
 
 const { id } = Astro.params;
 let product: Product | null = null;
 if (id) {
+  const response = await fetch(import.meta.env.HOST_URL+"/data/products.json");
+  const allProducts = await response.json() as Product[];
+
   const products = allProducts.filter(
     (p: Product) => p.id == id
   );
