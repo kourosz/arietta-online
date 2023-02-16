@@ -4,6 +4,8 @@ import Card from '../components/Card.astro';
 
 import rubbers from '/images/rubbers.jpeg';
 import blades from '/images/blades.jpg';
+import others from '/images/gewo-hydrotec100.jpeg';
+import shoes from '/images/shoes.jpg';
 import arietta_bg from '/images/arietta-background.jpg';
 
 import { ProductType } from '../entities';
@@ -32,15 +34,15 @@ import { ProductType } from '../entities';
 
 			</Card>
 			</a>
-			<Card title="Clothes & Shoes">
 
-			</Card>
-			<Card title="Accessories">
-				<div slot="footer">
-					<!-- <label for="my-modal" class="btn">open modal</label> -->
-				</div>
+			<a href={`/products/${ProductType.Shoes}`}>
 
-			</Card>
+			<Card title="Shoes" imageName={shoes}></Card>
+			</a>
+			<a href={`/products/${ProductType.Others}`}>
+			<Card title="Others" imageName={others}></Card>
+			</a>
+
 
 	</ul>
 

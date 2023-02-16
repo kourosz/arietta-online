@@ -8,7 +8,7 @@ const { title, imageName } = Astro.props;
 ---
 
 <div class="card w-64 bg-base-100 shadow-xl">
-	{ imageName && <figure><img src={imageName} alt={imageName} /></figure> }
+	{ imageName && <figure><img src={imageName} alt={imageName || title} /></figure> }
 	<div class="card-body">
 	  <h2 class="card-title">{title}</h2>
 	  <slot name="body" />

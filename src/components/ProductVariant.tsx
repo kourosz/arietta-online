@@ -50,15 +50,11 @@ export default function ProductVariant(props: Props) {
       <div class="pb-4 font-medium">
         Price:
         <span
-          class={`${
-            product.salePrice ? "line-through font-light" : "text-success"
-          }`}
-        >
-          {" "}
-          AU${product.price}
+          class={ product.salePrice ? "line-through font-light" : "text-success" }>
+          {" AUD " + product.price}
         </span>
-        {product.salePrice && (
-          <span class="text-error"> AU${product.salePrice}</span>
+        {!!product.salePrice && (
+          <span class="text-error"> AUD {product.salePrice}</span>
         )}
       </div>
       {product.definedVariants && (
@@ -76,9 +72,8 @@ export default function ProductVariant(props: Props) {
                 <option disabled selected>
                   Pick one
                 </option>
-                {product?.variants?.map((v) => {
-                  return <option>{v.combination[index()]}</option>;
-                })}
+                {
+                [...new Set(product.variants?.map((v) => v.combination[index()]))].map((v) => <option>{v}</option>)}
               </select>
             </div>
           )}

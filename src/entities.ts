@@ -3,7 +3,7 @@ export enum ProductType {
     Blade = "Blade",
     Clothes = "Clothes",
     Shoes = "Shoes",
-    Accessories = "Accessories"
+    Others = "Others"
 }
 
 // export const attributes = [
@@ -21,7 +21,7 @@ export type Variant = {
     combination: string[]
 };
 
-export type Product = {
+export interface Product {
     id: string,
     name: string,
     productType: ProductType,

@@ -1,32 +1,38 @@
 ---
-export function getStaticPaths() {
-  return [
-    { params: { type: ProductType.Rubber } },
-    { params: { type: ProductType.Accessories } },
-    { params: { type: ProductType.Blade } },
-    { params: { type: ProductType.Clothes } },
-  ];
-}
-
-import { ProductType, Product } from "../../entities";
+import type { MarkdownInstance } from "astro";
+import { Product, ProductType } from "../../entities";
 import Layout from "../../layouts/Layout.astro";
-const response = await fetch(import.meta.env.HOST_URL+"/data/products.json");
-const allProducts = await response.json() as Product[];
-// import {Client} from "pg";
 
 const { type } = Astro.params;
+let items = [] as MarkdownInstance<Product>[];
+try {
+  switch (type) {
+    case ProductType.Rubber:
+      items = await Astro.glob<Product>(`./Rubber-*.md`);
+      break;
+    case ProductType.Blade:
+      items = await Astro.glob<Product>(`./Blade-*.md`);
+      break;
+    case ProductType.Shoes:
+      items = await Astro.glob<Product>(`./Shoes-*.md`);
+      break;
+    case ProductType.Others:
+      items = await Astro.glob<Product>(`./Other-*.md`);
+      break;
+  }
+} catch {
+  items = [];
+}
 
-const products = allProducts.filter((p) => p.productType == type);
-
+const products = items.map((p) => p.frontmatter);
 ---
-
 
 <Layout title="Arietta Shop">
   <main>
     <div class="text-sm breadcrumbs">
       <ul>
         <li><a href="/">Home</a></li>
-        <li>Products</li>
+        <li>{type}</li>
       </ul>
     </div>
     <!-- 
@@ -38,7 +44,7 @@ const products = allProducts.filter((p) => p.productType == type);
       <thead>
         <tr>
           <th>Name</th>
-          <th>Sale Price</th>
+          <th>Price</th>
           <th></th>
         </tr>
       </thead>
@@ -59,12 +65,17 @@ const products = allProducts.filter((p) => p.productType == type);
                     </div>
                     <a href={`/product-details/${p.id}`}>
                       <div>
-                        <div class="font-bold">{p.name}</div>
+                        <div class="font-bold">{p.company} - {p.name}</div>
                       </div>
                     </a>
                   </div>
                 </td>
-                <td>AU$ {p.salePrice}</td>
+                <td>
+                  <span class={p.salePrice ? "text-error" : ""}>
+                    {" "}
+                    AUD {p.salePrice || p.price}
+                  </span>
+                </td>
                 <th>
                   <a
                     class="btn btn-ghost btn-xs"
